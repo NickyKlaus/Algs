@@ -8,55 +8,67 @@ public class ReverseLinkedList {
         LinkedList<Integer> originalList = new LinkedList<>(values);
         System.out.println("ORIGINAL LIST:");
         System.out.println(originalList);
+        System.out.println(originalList.getFirst() == 0 && originalList.getLast() == 1);
 
         System.out.println("REVERSED LIST:");
         originalList.reverse();
         System.out.println(originalList);
+        System.out.println(originalList.getFirst() == 1 && originalList.getLast() == 0);
 
         Integer[] empty = {};
         originalList = new LinkedList<>(empty);
-        System.out.println("ORIGINAL LIST:");
+        System.out.println("\nORIGINAL LIST:");
         System.out.println(originalList);
+        System.out.println(originalList.getFirst() == null && originalList.getLast() == null);
 
         System.out.println("REVERSED LIST:");
         originalList.reverse();
         System.out.println(originalList);
+        System.out.println(originalList.getFirst() == null && originalList.getLast() == null);
 
         Integer[] single = {1};
         originalList = new LinkedList<>(single);
-        System.out.println("ORIGINAL LIST:");
+        System.out.println("\nORIGINAL LIST:");
         System.out.println(originalList);
+        System.out.println(originalList.getFirst().equals(originalList.getLast()) && originalList.getFirst() == 1);
 
         System.out.println("REVERSED LIST:");
         originalList.reverse();
         System.out.println(originalList);
+        System.out.println(originalList.getFirst().equals(originalList.getLast()) && originalList.getFirst() == 1);
 
         Integer[] singleWithNull = {null};
         originalList = new LinkedList<>(singleWithNull);
-        System.out.println("ORIGINAL LIST:");
+        System.out.println("\nORIGINAL LIST:");
         System.out.println(originalList);
+        System.out.println(originalList.getFirst() == null && originalList.getLast() == null);
 
         System.out.println("REVERSED LIST:");
         originalList.reverse();
         System.out.println(originalList);
+        System.out.println(originalList.getFirst() == null && originalList.getLast() == null);
 
         Integer[] multipleNulls = {null, null, null};
         originalList = new LinkedList<>(multipleNulls);
-        System.out.println("ORIGINAL LIST:");
+        System.out.println("\nORIGINAL LIST:");
         System.out.println(originalList);
+        System.out.println(originalList.getFirst() == null && originalList.getLast() == null);
 
         System.out.println("REVERSED LIST:");
         originalList.reverse();
         System.out.println(originalList);
+        System.out.println(originalList.getFirst() == null && originalList.getLast() == null);
 
         Integer[] multipleMixedWithNulls = {7, null, 0, 5, null, 3, null};
         originalList = new LinkedList<>(multipleMixedWithNulls);
-        System.out.println("ORIGINAL LIST:");
+        System.out.println("\nORIGINAL LIST:");
         System.out.println(originalList);
+        System.out.println(originalList.getFirst() == 7 && originalList.getLast() == null);
 
         System.out.println("REVERSED LIST:");
         originalList.reverse();
         System.out.println(originalList);
+        System.out.println(originalList.getFirst() == null && originalList.getLast() == 7);
     }
 
     static class LinkedList<E> {
@@ -79,17 +91,20 @@ public class ReverseLinkedList {
         }
 
         public void reverse() {
-            if (size == 0 || getFirst().getNext() == null) {
+            if (size == 0 || first.getNext() == null) {
                 return;
             }
 
             LinkedList.Node<E> tmp;
             LinkedList.Node<E> prev = null;
-            LinkedList.Node<E> curr = getFirst();
+            LinkedList.Node<E> curr = first;
 
             while (curr != null) {
                 tmp = curr.getNext();
                 curr.setNext(prev);
+                if (prev == null) {
+                    setLast(curr);
+                }
                 prev = curr;
                 if (tmp == null)
                     setFirst(curr);
@@ -101,7 +116,7 @@ public class ReverseLinkedList {
             if (size == 0) {
                 setFirst(node);
             } else {
-                getLast().setNext(node);
+                last.setNext(node);
             }
             setLast(node);
             incrementSize();
@@ -120,26 +135,26 @@ public class ReverseLinkedList {
             return size;
         }
 
-        private Node<E> getLast() {
-            return last;
+        public E getFirst() {
+            return first == null ? null : first.getValue();
         }
 
-        private void setLast(Node<E> node) {
-            this.last = node;
-        }
-
-        private Node<E> getFirst() {
-            return first;
+        public E getLast() {
+            return last == null ? null : last.getValue();
         }
 
         private void setFirst(Node<E> first) {
             this.first = first;
         }
 
+        private void setLast(Node<E> node) {
+            this.last = node;
+        }
+
         @Override
         public String toString() {
             StringBuilder representation = new StringBuilder("LinkedList:\n").append("[ ");
-            Node<E> curr = getFirst();
+            Node<E> curr = first;
             while (curr != null) {
                 representation.append(curr);
                 if (curr.getNext() != null) {
