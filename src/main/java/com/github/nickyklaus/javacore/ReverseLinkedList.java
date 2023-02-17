@@ -79,7 +79,7 @@ public class ReverseLinkedList {
         }
 
         public void reverse() {
-            if (size() == 0 || getFirst() == null || getFirst().getNext() == null) {
+            if (size == 0 || getFirst().getNext() == null) {
                 return;
             }
 
@@ -98,7 +98,7 @@ public class ReverseLinkedList {
         }
 
         private boolean addNode(Node<E> node) {
-            if (size() == 0) {
+            if (size == 0) {
                 setFirst(node);
             } else {
                 getLast().setNext(node);
