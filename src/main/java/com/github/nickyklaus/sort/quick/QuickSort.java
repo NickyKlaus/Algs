@@ -3,7 +3,6 @@ package com.github.nickyklaus.sort.quick;
 import java.util.Arrays;
 
 public class QuickSort {
-    // Переписать - неправильный выход из рекурсии см. Quick sort для java
 
     public static void main(String[] args) {
         int[] values;
