@@ -9,7 +9,6 @@ public class BinarySearch {
         System.out.println(binarySearch(values, 1));
         System.out.println(binarySearch(values, 0));
 
-
         values = new int[]{};
         System.out.println("\n" + Arrays.toString(values));
         System.out.println(binarySearch(values, 1));
