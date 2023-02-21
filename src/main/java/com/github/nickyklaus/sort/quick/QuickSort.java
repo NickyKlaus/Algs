@@ -61,7 +61,6 @@ public class QuickSort {
     private static int partition(int[] arr, int begin, int end) {
         int pivot = arr[end];
         int nextToSwap = begin;
-        int tmp;
 
         for (int i = begin; i < end; i++) {
             if (arr[i] < pivot) {
