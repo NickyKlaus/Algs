@@ -8,20 +8,20 @@ import java.util.Objects;
 
 public class GraphBreadthFirstSearch {
     public static void main(String[] args) {
-        /*
-        root->n1->n3->n5
-              n1->n2
-              n2->n1
-        root->n2->n4->n5
-                  n4->n3
-                  n3->n4
-         */
         Node<Integer> root = new Node<>(9);
         Node<Integer> n1 = new Node<>(3);
         Node<Integer> n2 = new Node<>(8);
         Node<Integer> n3 = new Node<>(6);
         Node<Integer> n4 = new Node<>(5);
         Node<Integer> n5 = new Node<>(1);
+
+        /*
+        root -> n1, n2
+        n1 -> n2, n3
+        n2 -> n1, n4
+        n3 -> n4, n5
+        n4 -> n3, n5
+         */
         root.addNeighbours(List.of(n1, n2));
         n1.addNeighbours(List.of(n2, n3));
         n2.addNeighbours(List.of(n1, n4));
