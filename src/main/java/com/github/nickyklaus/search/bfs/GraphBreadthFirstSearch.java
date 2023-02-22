@@ -66,10 +66,7 @@ public class GraphBreadthFirstSearch {
         private final List<Node<E>> neighbours = new ArrayList<>();
 
         public Node(E value) {
-            if (value == null) {
-                throw new IllegalArgumentException("Node field 'value' cannot be null!");
-            }
-            this.value = value;
+            this.value = Objects.requireNonNull(value, "Node field 'value' cannot be null!");
         }
 
         public E value() {
