@@ -14,6 +14,7 @@ public class GraphBreadthFirstSearch {
               n2->n1
         root->n2->n4->n5
                   n4->n3
+                  n3->n4
          */
         Node<Integer> root = new Node<>(9);
         Node<Integer> n1 = new Node<>(3);
@@ -24,7 +25,7 @@ public class GraphBreadthFirstSearch {
         root.addNeighbours(List.of(n1, n2));
         n1.addNeighbours(List.of(n2, n3));
         n2.addNeighbours(List.of(n1, n4));
-        n3.addNeighbours(List.of(n5));
+        n3.addNeighbours(List.of(n4, n5));
         n4.addNeighbours(List.of(n3, n5));
 
         System.out.println(bfs(root.value(), root));
